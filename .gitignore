@@ -29,3 +29,4 @@ Thumbs.db
 .idea/
 *.suo
 *.sw?
+client/package-lock.json
