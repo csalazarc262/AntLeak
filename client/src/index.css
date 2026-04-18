@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream:        #faf6ed;
+  --color-cream-warm:   #f2ecdc;
+  --color-line:         #e8e1cf;
+  --color-ink:          #2b2a26;
+  --color-ink-soft:     #5c5a52;
+  --color-muted:        #9a958a;
+  --color-green:        #7bd191;
+  --color-green-deep:   #5aba74;
+  --color-green-soft:   #a8e0b5;
+  --color-caramel:      #d4ad7d;
+  --color-caramel-deep: #b8905c;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Fraunces', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #faf6ed;
+  color: #2b2a26;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Noise texture — matches the HTML reference */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.2 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+#root {
+  position: relative;
+  z-index: 2;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e8e1cf; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #d4ad7d; }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
+
+/* Coin float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.coin-float-1 { animation: float 4s ease-in-out infinite; }
+.coin-float-2 { animation: float 4s ease-in-out 0.3s infinite; }
+.coin-float-3 { animation: float 4s ease-in-out 0.6s infinite; }
+
+/* Responsive dashboard */
+@media (max-width: 960px) {
+  .main-content { padding: 24px !important; }
+  .stats-grid   { grid-template-columns: 1fr !important; }
+  .option-grid-r { grid-template-columns: repeat(2, 1fr) !important; }
+  .bottom-grid-r { grid-template-columns: 1fr !important; }
+  .stats-mini-border { border-left: none !important; border-top: 1px solid rgba(43,42,38,0.15) !important; padding-left: 0 !important; padding-top: 16px !important; }
+}
+@media (max-width: 540px) {
+  .option-grid-r { grid-template-columns: 1fr !important; }
+}
+
+/* Option card hover */
+.option-card {
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.option-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px -10px rgba(43, 42, 38, 0.12);
+}
+.option-card:hover .option-arrow-icon {
+  transform: translateX(4px);
+}
+.option-arrow-icon {
+  transition: transform 0.3s ease;
+}
